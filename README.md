@@ -1,70 +1,278 @@
-# Getting Started with Create React App
+# 🚀 End-to-End CI/CD Pipeline using Jenkins, Docker, GitHub & Docker Hub
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📌 Project Overview
 
-## Available Scripts
+This project demonstrates an **End-to-End Continuous Integration and Continuous Deployment (CI/CD) Pipeline** for a React.js application using **Jenkins, Docker, GitHub, Docker Hub, and AWS EC2**.
 
-In the project directory, you can run:
+The application source code is hosted on GitHub. Jenkins automatically clones the repository, builds a Docker image, runs the application inside a Docker container, and pushes the Docker image to Docker Hub whenever changes are made.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- ⚛️ React.js
+- 🐙 Git
+- 📂 GitHub
+- 🤖 Jenkins
+- 🐳 Docker
+- 📦 Docker Hub
+- ☁️ AWS EC2 (Ubuntu)
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📂 Project Architecture
 
-### `npm run build`
+```
+                 Developer
+                     │
+                     ▼
+            GitHub Repository
+                     │
+                     ▼
+              Jenkins Pipeline
+                     │
+     ┌───────────────┼────────────────┐
+     │               │                │
+     ▼               ▼                ▼
+ Clone Code    Build Docker Image   Run Container
+                     │
+                     ▼
+          Push Image to Docker Hub
+                     │
+                     ▼
+               Docker Hub Repository
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# ⚙️ CI/CD Pipeline Workflow
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 1️⃣ Clone Source Code
 
-### `npm run eject`
+Jenkins clones the latest source code from the GitHub repository.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone https://github.com/Jiya-del302/<repository-name>.git
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 2️⃣ Build Docker Image
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Jenkins builds a Docker image using the project's Dockerfile.
 
-## Learn More
+```bash
+docker build -t react-cicd-app .
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 3️⃣ Run Docker Container
 
-### Code Splitting
+Jenkins runs the Docker container.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+docker run -d -p 7000:80 react-cicd-app
+```
 
-### Analyzing the Bundle Size
+The application becomes available at:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+http://<EC2-PUBLIC-IP>:7000
+```
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 4️⃣ Push Image to Docker Hub
 
-### Advanced Configuration
+Jenkins logs in to Docker Hub, tags the Docker image, and pushes it to your Docker Hub repository.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+docker tag react-cicd-app jiyapardeshi/react-cicd-app:latest
 
-### Deployment
+docker push jiyapardeshi/react-cicd-app:latest
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+# 📁 Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+.
+├── public/
+├── src/
+├── Dockerfile
+├── Jenkinsfile
+├── package.json
+├── package-lock.json
+└── README.md
+```
+
+---
+
+# ☁️ AWS EC2 Setup
+
+An **Ubuntu EC2 Instance** was used to host Jenkins and Docker.
+
+### Installed Software
+
+- Java
+- Jenkins
+- Docker
+- Git
+
+---
+
+# ▶️ Running the Project Locally
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/Jiya-del302/<repository-name>.git
+```
+
+### Navigate to the Project
+
+```bash
+cd <repository-name>
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Start the React Application
+
+```bash
+npm start
+```
+
+The application will run at:
+
+```
+http://localhost:3000
+```
+
+---
+
+# 🐳 Docker Commands
+
+### Build Docker Image
+
+```bash
+docker build -t react-cicd-app .
+```
+
+### Run Docker Container
+
+```bash
+docker run -d -p 3000:80 react-cicd-app
+```
+
+### Stop Running Container
+
+```bash
+docker stop react-container
+docker rm react-container
+```
+
+---
+
+# 📦 Docker Hub Repository
+
+### Docker Hub Username
+
+```
+jiyapardeshi
+```
+
+### Docker Image
+
+```
+jiyapardeshi/react-cicd-app:latest
+```
+
+Pull the image:
+
+```bash
+docker pull jiyapardeshi/react-cicd-app:latest
+```
+
+---
+
+# 🔄 Jenkins Pipeline Stages
+
+- ✅ Clone GitHub Repository
+- ✅ Build Docker Image
+- ✅ Stop Existing Container (if running)
+- ✅ Run New Docker Container
+- ✅ Authenticate with Docker Hub
+- ✅ Push Docker Image
+- ✅ Deployment Completed
+
+---
+
+# 📸 Pipeline Flow
+
+```
+Developer
+    │
+    ▼
+Git Push
+    │
+    ▼
+GitHub Repository
+    │
+    ▼
+Jenkins Pipeline
+    │
+    ├── Checkout Source Code
+    ├── Build Docker Image
+    ├── Run Docker Container
+    ├── Tag Docker Image
+    └── Push to Docker Hub
+            │
+            ▼
+       Docker Hub
+```
+
+---
+
+# 🎯 Learning Outcomes
+
+Through this project, I gained hands-on experience with:
+
+- Building a React.js application
+- Version control using Git and GitHub
+- Installing and configuring Jenkins on AWS EC2
+- Writing Declarative Jenkins Pipelines
+- Creating Docker images
+- Running Docker containers
+- Managing Docker Hub repositories
+- Implementing an End-to-End CI/CD Pipeline
+- Automating application deployment
+
+---
+
+# 👩‍💻 Author
+
+**Jiya Pardeshi**
+
+Cloud & DevOps Enthusiast 🚀
+
+- GitHub: https://github.com/Jiya-del302
+- Docker Hub: https://hub.docker.com/u/jiyapardeshi
+
+---
+
+## ⭐ Support
+
+If you found this project helpful, consider giving it a ⭐ on GitHub.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
