@@ -52,7 +52,7 @@ The application source code is hosted on GitHub. Jenkins automatically clones th
 Jenkins clones the latest source code from the GitHub repository.
 
 ```bash
-git clone https://github.com/Jiya-del302/<repository-name>.git
+git clone 
 ```
 
 ---
@@ -258,12 +258,12 @@ Through this project, I gained hands-on experience with:
 
 # 👩‍💻 Author
 
-**Jiya Pardeshi**
+**gauri waydande**
 
 Cloud & DevOps Enthusiast 🚀
 
-- GitHub: https://github.com/Jiya-del302
-- Docker Hub: https://hub.docker.com/u/jiyapardeshi
+- GitHub: https://github.com/gauriwaydande
+- DockerHub :
 
 ---
 
