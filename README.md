@@ -4,7 +4,7 @@
 
 This project demonstrates an **End-to-End Continuous Integration and Continuous Deployment (CI/CD) Pipeline** for a React.js application using **Jenkins, Docker, GitHub, Docker Hub, and AWS EC2**.
 
-The application source code is hosted on GitHub. Jenkins automatically clones the repository, builds a Docker image, runs the application inside a Docker container, and pushes the Docker image to Docker Hub whenever changes are made.
+The application source code is hosted on GitHub. Jenkins automatically clones the repository, builds a Docker image, runs the application inside a Docker container, and pushes the Docker image to Docker Hub.
 
 ---
 
@@ -22,7 +22,7 @@ The application source code is hosted on GitHub. Jenkins automatically clones th
 
 ## 📂 Project Architecture
 
-```
+```text
                  Developer
                      │
                      ▼
@@ -49,17 +49,15 @@ The application source code is hosted on GitHub. Jenkins automatically clones th
 
 ## 1️⃣ Clone Source Code
 
-Jenkins clones the latest source code from the GitHub repository.
+Jenkins automatically clones the latest source code from GitHub.
 
 ```bash
-git clone 
+git clone https://github.com/gauriwaydande/End-to-end-CI-CD-pipeline-project.git
 ```
 
 ---
 
 ## 2️⃣ Build Docker Image
-
-Jenkins builds a Docker image using the project's Dockerfile.
 
 ```bash
 docker build -t react-cicd-app .
@@ -69,13 +67,11 @@ docker build -t react-cicd-app .
 
 ## 3️⃣ Run Docker Container
 
-Jenkins runs the Docker container.
-
 ```bash
 docker run -d -p 7000:80 react-cicd-app
 ```
 
-The application becomes available at:
+Application URL:
 
 ```
 http://<EC2-PUBLIC-IP>:7000
@@ -83,21 +79,19 @@ http://<EC2-PUBLIC-IP>:7000
 
 ---
 
-## 4️⃣ Push Image to Docker Hub
-
-Jenkins logs in to Docker Hub, tags the Docker image, and pushes it to your Docker Hub repository.
+## 4️⃣ Push Docker Image to Docker Hub
 
 ```bash
-docker tag react-cicd-app jiyapardeshi/react-cicd-app:latest
+docker tag react-cicd-app gauriwaydande/react-cicd-app:latest
 
-docker push jiyapardeshi/react-cicd-app:latest
+docker push gauriwaydande/react-cicd-app:latest
 ```
 
 ---
 
 # 📁 Project Structure
 
-```
+```text
 .
 ├── public/
 ├── src/
@@ -112,7 +106,7 @@ docker push jiyapardeshi/react-cicd-app:latest
 
 # ☁️ AWS EC2 Setup
 
-An **Ubuntu EC2 Instance** was used to host Jenkins and Docker.
+Ubuntu EC2 Instance was used to host Jenkins and Docker.
 
 ### Installed Software
 
@@ -125,16 +119,16 @@ An **Ubuntu EC2 Instance** was used to host Jenkins and Docker.
 
 # ▶️ Running the Project Locally
 
-### Clone the Repository
+### Clone Repository
 
 ```bash
-git clone https://github.com/Jiya-del302/<repository-name>.git
+git clone https://github.com/gauriwaydande/End-to-end-CI-CD-pipeline-project.git
 ```
 
-### Navigate to the Project
+### Navigate to Project
 
 ```bash
-cd <repository-name>
+cd End-to-end-CI-CD-pipeline-project
 ```
 
 ### Install Dependencies
@@ -143,13 +137,13 @@ cd <repository-name>
 npm install
 ```
 
-### Start the React Application
+### Start Application
 
 ```bash
 npm start
 ```
 
-The application will run at:
+Open:
 
 ```
 http://localhost:3000
@@ -159,19 +153,19 @@ http://localhost:3000
 
 # 🐳 Docker Commands
 
-### Build Docker Image
+### Build Image
 
 ```bash
 docker build -t react-cicd-app .
 ```
 
-### Run Docker Container
+### Run Container
 
 ```bash
 docker run -d -p 3000:80 react-cicd-app
 ```
 
-### Stop Running Container
+### Stop Container
 
 ```bash
 docker stop react-container
@@ -185,19 +179,19 @@ docker rm react-container
 ### Docker Hub Username
 
 ```
-jiyapardeshi
+gauriwaydande
 ```
 
 ### Docker Image
 
 ```
-jiyapardeshi/react-cicd-app:latest
+gauriwaydande/react-cicd-app:latest
 ```
 
-Pull the image:
+Pull Image
 
 ```bash
-docker pull jiyapardeshi/react-cicd-app:latest
+docker pull gauriwaydande/react-cicd-app:latest
 ```
 
 ---
@@ -206,37 +200,9 @@ docker pull jiyapardeshi/react-cicd-app:latest
 
 - ✅ Clone GitHub Repository
 - ✅ Build Docker Image
-- ✅ Stop Existing Container (if running)
-- ✅ Run New Docker Container
-- ✅ Authenticate with Docker Hub
-- ✅ Push Docker Image
-- ✅ Deployment Completed
-
----
-
-# 📸 Pipeline Flow
-
-```
-Developer
-    │
-    ▼
-Git Push
-    │
-    ▼
-GitHub Repository
-    │
-    ▼
-Jenkins Pipeline
-    │
-    ├── Checkout Source Code
-    ├── Build Docker Image
-    ├── Run Docker Container
-    ├── Tag Docker Image
-    └── Push to Docker Hub
-            │
-            ▼
-       Docker Hub
-```
+- ✅ Run Docker Container
+- ✅ Tag Docker Image
+- ✅ Push Docker Image to Docker Hub
 
 ---
 
@@ -245,31 +211,35 @@ Jenkins Pipeline
 Through this project, I gained hands-on experience with:
 
 - Building a React.js application
-- Version control using Git and GitHub
-- Installing and configuring Jenkins on AWS EC2
-- Writing Declarative Jenkins Pipelines
-- Creating Docker images
-- Running Docker containers
-- Managing Docker Hub repositories
+- Git & GitHub Version Control
+- Installing and Configuring Jenkins on AWS EC2
+- Writing Jenkins Declarative Pipelines
+- Building Docker Images
+- Running Docker Containers
+- Pushing Images to Docker Hub
 - Implementing an End-to-End CI/CD Pipeline
-- Automating application deployment
 
 ---
 
 # 👩‍💻 Author
 
-**gauri waydande**
+## Gauri Waydande
 
-Cloud & DevOps Enthusiast 🚀
+**Cloud & DevOps Enthusiast 🚀**
 
-- GitHub: https://github.com/gauriwaydande
-- DockerHub :
+### GitHub
+
+https://github.com/gauriwaydande
+
+### Docker Hub
+
+https://hub.docker.com/u/gauriwaydande
 
 ---
 
 ## ⭐ Support
 
-If you found this project helpful, consider giving it a ⭐ on GitHub.
+If you found this project helpful, please give it a ⭐ on GitHub.
 
 ---
 
